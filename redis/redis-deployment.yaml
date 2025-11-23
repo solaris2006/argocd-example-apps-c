@@ -1,0 +1,28 @@
+# --- Redis Deployment ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:latest # Using the official Redis image
+        ports:
+        - containerPort: 6379
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        # Command to ensure Redis runs non-interactively
+        command: ["redis-server", "--appendonly", "no"]
