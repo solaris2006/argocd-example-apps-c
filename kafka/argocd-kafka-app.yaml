@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kafka-application
+  namespace: argocd 
+spec:
+  project: default
+  source:
+    # 1. Official Strimzi Helm Repository URL
+    repoURL: https://strimzi.io/charts/ 
+    targetRevision: 0.38.0 # IMPORTANT: Specify a specific chart version
+    # 2. Name of the Chart to use
+    chart: kafka
+    # 3. Reference to the values file in your Git repository (if used)
+    # values: |
+    #   <Contents of kafka-values.yaml go here, or reference the path>
+    
+  destination:
+    server: https://kubernetes.default.svc 
+    namespace: kafka # Deploy Kafka into a new 'kafka' namespace
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

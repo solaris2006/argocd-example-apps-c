@@ -1,0 +1,13 @@
+# kafka-values.yaml (Corrected)
+
+kafka:
+  replicas: 1  # Configuration 1
+  storage:     # Configuration 2 merged here
+    type: ephemeral
+    
+zookeeper:
+  replicas: 1
+  
+entityOperator:
+  topicOperator:
+    replicas: 1
