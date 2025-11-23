@@ -25,7 +25,7 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         # Command to ensure Redis runs non-interactively
-        command: ["redis-server", "--appendonly", "yes"]
+        command: ["redis-server", "--appendonly", "yes", "--maxmemory", "100mb", "--maxmemory-policy", "allkeys-lru"]
     # Define the volume mount
         volumeMounts:
           - name: redis-data
