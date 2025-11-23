@@ -1,26 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kafka-application
+  name: my-kafka-cluster
   namespace: argocd 
+  # This annotation is helpful to ensure ArgoCD doesn't try to sync
+  # before the necessary Custom Resource Definitions (CRDs) are fully registered.
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   source:
-    # 1. Official Strimzi Helm Repository URL
-    repoURL: https://strimzi.io/charts/ 
-    targetRevision: 0.38.0 # IMPORTANT: Specify a specific chart version
-    # 2. Name of the Chart to use
-    chart: kafka
-    # 3. Reference to the values file in your Git repository (if used)
-    # values: |
-    #   <Contents of kafka-values.yaml go here, or reference the path>
-    
+    # 1. REPLACE with the URL of your Git repository containing kafka-cluster.yaml
+    repoURL: https://github.com/solaris2006/argocd-example-apps-c.git
+    targetRevision: HEAD
+    # 2. REPLACE with the path to your kafka-cluster.yaml file
+    path: kafka 
   destination:
     server: https://kubernetes.default.svc 
-    namespace: kafka # Deploy Kafka into a new 'kafka' namespace
+    namespace: kafka # Namespace where the Kafka cluster will be built
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
+      # Ensure the target namespace for Kafka exists
       - CreateNamespace=true
+      # Useful flag when dealing with CRDs and external operators
+      - Replace=true
