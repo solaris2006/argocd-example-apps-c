@@ -26,3 +26,11 @@ spec:
             cpu: "500m"
         # Command to ensure Redis runs non-interactively
         command: ["redis-server", "--appendonly", "no"]
+    # Define the volume mount
+        volumeMounts:
+          - name: redis-data
+            mountPath: /data  
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-pvc  # Reference to the PVC defined in redis-pvc.yaml   
