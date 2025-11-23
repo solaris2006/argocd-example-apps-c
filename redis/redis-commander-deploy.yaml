@@ -1,0 +1,36 @@
+# --- Redis Commander Deployment ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-commander-deployment
+  labels:
+    app: redis-commander
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-commander
+  template:
+    metadata:
+      labels:
+        app: redis-commander
+    spec:
+      containers:
+      - name: redis-commander
+        # Official Redis Commander image
+        image: rediscommander/redis-commander:latest 
+        ports:
+        - containerPort: 8081 # Redis Commander UI port
+        env:
+        # Connect to the Redis Service (redis-service) you already deployed
+        - name: REDIS_HOSTS
+          value: "default:redis-service:6379" 
+        # Optional: Set a password for the UI itself
+        - name: HTTP_PASSWORD
+          value: "your-ui-password"
+        # If your Redis has a password, add it here:
+        # - name: REDIS_PASSWORD
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: your-redis-secret
+        #       key: password
