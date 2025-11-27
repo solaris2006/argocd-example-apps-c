@@ -2,6 +2,7 @@ mariadb:
   enabled: false
 
 wordpress:
+  namespace: default
   wordpressPassword: foo
   mariadb:
     enabled: false

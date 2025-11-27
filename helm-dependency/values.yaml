@@ -7,4 +7,4 @@ wordpress:
       password: bar
     rootUser:
       password: baz
-  namespace: default
+  
