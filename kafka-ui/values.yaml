@@ -36,11 +36,10 @@ serviceAccount:
 existingConfigMap: ""
 ## @param yamlApplicationConfig Kafbat-UI config in Yaml format
 yamlApplicationConfig:
-  {}
-  # kafka:
-  #   clusters:
-  #     - name: yaml
-  #       bootstrapServers: kafka-service:9092
+  kafka:
+    clusters:
+      - name: yaml
+        bootstrapServers: my-cluster-kafka-bootstrap:9092
   # spring:
   #   security:
   #     oauth2:
