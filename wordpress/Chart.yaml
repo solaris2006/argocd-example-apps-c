@@ -18,7 +18,7 @@ dependencies:
 - condition: memcached.enabled
   name: memcached
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 7.9.11
+  version: 8.1.4
 - condition: mariadb.enabled
   name: mariadb
   repository: oci://registry-1.docker.io/bitnamicharts
@@ -27,7 +27,7 @@ dependencies:
   repository: oci://registry-1.docker.io/bitnamicharts
   tags:
   - bitnami-common
-  version: 2.33.2
+  version: 2.31.4
 description: "WordPress is the world's most popular blogging and content management platform. Powerful yet simple, everyone from students to global corporations use it to build beautiful, functional websites."
 home: https://bitnami.com
 icon: https://dyltqmyl993wv.cloudfront.net/assets/stacks/wordpress/img/wordpress-stack-220x234.png
