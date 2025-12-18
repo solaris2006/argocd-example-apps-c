@@ -803,19 +803,20 @@ notifiers: {}
 ##
 ## `path` must be /var/lib/grafana/dashboards/<provider_name>
 ##
-dashboardProviders: {}
-#  dashboardproviders.yaml:
-#    apiVersion: 1
-#    providers:
-#    - name: 'default'
-#      orgId: 1
-#      folder: ''
-#      type: file
-#      disableDeletion: false
-#      editable: true
-#      options:
-#        path: /var/lib/grafana/dashboards/default
-
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: 'default'
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          # This path is the standard location where the sidecar/init-container 
+          # stores dashboards in this Helm chart.
+          path: /var/lib/grafana/dashboards/default
 ## Configure how curl fetches remote dashboards. The beginning dash is required.
 ## NOTE: This sets the default short flags for all dashboards, but these
 ##       defaults can be overridden individually for each dashboard by setting
