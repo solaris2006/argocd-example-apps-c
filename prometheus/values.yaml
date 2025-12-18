@@ -315,7 +315,15 @@ server:
 
   ## Additional InitContainers to initialize the pod
   ##
-  extraInitContainers: []
+  extraInitContainers:
+    - name: fix-permissions
+      image: busybox
+      command: ["sh", "-c", "chown -R 65534:65534 /data && chmod -R 777 /data"]
+      securityContext:
+        runAsUser: 0
+      volumeMounts:
+        - name: storage-volume
+          mountPath: /data
 
   ## Additional Prometheus server Volume mounts
   ##
