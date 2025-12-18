@@ -27,3 +27,4 @@ spec:
       - CreateNamespace=true
       # Useful flag when dealing with CRDs and external operators
       - Replace=true
+      - SkipDryRunOnMissingResource=true
