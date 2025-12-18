@@ -321,6 +321,8 @@ server:
       command: ["sh", "-c", "chown -R 65534:65534 /data && chmod -R 777 /data"]
       securityContext:
         runAsUser: 0
+        runAsNonRoot: false
+        privileged: true
       volumeMounts:
         - name: storage-volume
           mountPath: /data
