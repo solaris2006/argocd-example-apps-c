@@ -98,7 +98,7 @@ admin:
   user: "admin"
   ## @param admin.password Admin password. If a password is not provided a random password will be generated
   ##
-  password: ""
+  password: "admin"
   ## @param admin.existingSecret Name of the existing secret containing admin password
   ##
   existingSecret: ""
