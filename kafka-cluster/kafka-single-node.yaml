@@ -23,6 +23,11 @@ apiVersion: kafka.strimzi.io/v1
 kind: Kafka
 metadata:
   name: my-cluster
+annotations:
+    # THIS IS THE KEY: It tells Strimzi to look for KafkaNodePools
+    strimzi.io/node-pools: enabled
+    # Since you are using KRaft (no Zookeeper), you also need this:
+    strimzi.io/kraft: enabled
 spec:
   kafka:
     version: 4.1.1
