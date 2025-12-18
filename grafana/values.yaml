@@ -841,6 +841,10 @@ dashboards:
       gnetId: 1860
       revision: 37
       datasource: Prometheus
+    argocd:
+      gnetId: 14584
+      revision: 1
+      datasource: Prometheus
   #   some-dashboard:
   #     json: |
   #       $RAW_JSON
