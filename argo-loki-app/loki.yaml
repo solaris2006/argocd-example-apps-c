@@ -8,19 +8,30 @@ spec:
   source:
     repoURL: https://grafana.github.io/helm-charts
     chart: loki
-    targetRevision: 6.49.0 # Replace with desired version
+    targetRevision: 6.49.0
     helm:
-      # This is the monolithic config from the link you provided
       values: |
         loki:
+          auth_enabled: false
           commonConfig:
             replication_factor: 1
           storage:
             type: 'filesystem'
-          auth_enabled: false
+          # --- FIX: Added Schema Config ---
+          schemaConfig:
+            configs:
+              - from: "2024-04-01"
+                store: tsdb
+                object_store: filesystem
+                schema: v13
+                index:
+                  prefix: loki_index_
+                  period: 24h
+          # --------------------------------
         deploymentMode: Monolithic
         singleBinary:
           replicas: 1
+        # Ensure other modes are disabled for monolithic
         read:
           replicas: 0
         write:
