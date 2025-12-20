@@ -495,12 +495,12 @@ initChownData:
 
 # Administrator credentials when not using an existing secret (see below)
 adminUser: admin
-# adminPassword: strongpassword
+adminPassword: strongpassword
 
 # Use an existing secret for the admin user.
 admin:
   ## Name of the secret. Can be templated.
-  existingSecret: "grafana-from-vault"
+  existingSecret: ""
   userKey: admin-user
   passwordKey: admin-password
 
