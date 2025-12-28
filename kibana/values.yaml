@@ -12,6 +12,8 @@ replicas: 1
 extraEnvs:
   - name: "NODE_OPTIONS"
     value: "--max-old-space-size=1800"
+  - name: NODE_TLS_REJECT_UNAUTHORIZED
+    value: "0"  
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
