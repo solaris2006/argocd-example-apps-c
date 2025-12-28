@@ -18,8 +18,8 @@ spec:
         image: rediscommander/redis-commander:latest
         env:
         - name: REDIS_HOSTS
-          # Format: label:host:port:dbIndex:password
-          value: "HAProxy:haproxy:6379:0:Doifo4Pj44"
+          # syntax: connectionName:host:port:dbIndex:password
+          value: "HAProxy-Master:haproxy:6379:0:Doifo4Pj44"
         ports:
         - containerPort: 8081
 ---
@@ -29,10 +29,28 @@ metadata:
   name: redis-commander
   namespace: redis
 spec:
-  type: NodePort
   ports:
-  - port: 8081
+  - port: 80
     targetPort: 8081
-    nodePort: 30081 # You can access this at http://<NODE_IP>:30081
   selector:
     app: redis-commander
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redis-commander-ingress
+  namespace: redis
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: redis.test
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: redis-commander
+            port:
+              number: 80
