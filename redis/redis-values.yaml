@@ -1,4 +1,4 @@
-architecture: high-availability
+architecture: replcation
 replica:
   replicaCount: 2
 sentinel:
