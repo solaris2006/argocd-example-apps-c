@@ -14,3 +14,9 @@ spec:
       value: mypass # Ensure this matches your ES password
     logstash_format: true
     logstash_prefix: guestbook-logs
+    buffer:
+      flush_mode: interval
+      flush_interval: 5s
+      chunk_limit_size: 1M
+      total_limit_size: 100M
+      retry_forever: true
