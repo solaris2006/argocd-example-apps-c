@@ -1,16 +1,22 @@
 architecture: replication
+
+auth:
+  enabled: true
+  password: "Doifo4Pj44"
+  sentinel: true
+
 replica:
-  replicaCount: 2
+  replicaCount: 1     # This gives you 1 Master + 1 Replica = 2 Nodes total
+
 sentinel:
   enabled: true
   masterSet: mymaster
-  quorum: 2
+  quorum: 1
+
 resources:
   limits:
+    cpu: 500m
     memory: 512Mi
   requests:
+    cpu: 100m
     memory: 256Mi
-auth:
-  enabled: true
-  password: "Doifo4Pj44"  # Use the password you put in HAProxy
-  sentinel: true          # Ensure sentinels use this password too
