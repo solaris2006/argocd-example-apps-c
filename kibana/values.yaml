@@ -69,6 +69,16 @@ healthCheckPath: "/app/kibana"
 # such as kibana.yml
 kibanaConfig: 
   kibana.yml: |
+    server.publicBaseUrl: "http://kibana.test"
+    elasticsearch.hosts: ["https://elasticsearch-master:9200"]
+    
+    # Use the superuser to bypass service token issues
+    elasticsearch.username: "elastic"
+    elasticsearch.password: "mypass" 
+    
+    # SSL Settings
+    elasticsearch.ssl.certificateAuthorities: [ "/usr/share/kibana/config/certs/ca.crt" ]
+    elasticsearch.ssl.verificationMode: certificate
     console.proxyConfig:
       - ssl:
           verify: false
