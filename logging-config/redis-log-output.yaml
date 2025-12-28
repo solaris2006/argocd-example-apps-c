@@ -12,6 +12,7 @@ spec:
     ssl_verify: false
     ssl_version: TLSv1_2
     # Ensure you have your credentials if security is on
+    verify_es_version_at_startup: false
     user: elastic
     password:
       valueFrom:
