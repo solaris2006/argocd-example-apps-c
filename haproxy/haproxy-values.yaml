@@ -1,3 +1,10 @@
+service:
+  type: NodePort  # Better for KVM labs than LoadBalancer
+  ports:
+    redis: 6379   # Change the service port to 6379
+
+
+
 config: |
   global
       log stdout format raw local0
