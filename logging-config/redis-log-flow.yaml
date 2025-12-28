@@ -15,11 +15,6 @@ spec:
             expression: /^(?<time>\d+:\w+ \d+ \d+:\d+:\d+\.\d+) (?<level>[.*#]) (?<message>.*)$/
             time_format: "%d %b %Y %H:%M:%S.%L"
   match:
-    - select:
-        labels:
-          app.kubernetes.io/name: redis
-    - select:
-        labels:
-          app.kubernetes.io/name: haproxy
+    - select: {}
   localOutputRefs:
     - es-output
