@@ -1,0 +1,16 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterOutput
+metadata:
+  name: elasticsearch-output
+  namespace: logging
+spec:
+  elasticsearch:
+    host: elasticsearch-master.elasticsearch.svc.cluster.local
+    port: 9200
+    scheme: https
+    ssl_verify: false
+    user: elastic
+    password:
+      value: mypass # Ensure this matches your ES password
+    logstash_format: true
+    logstash_prefix: guestbook-logs

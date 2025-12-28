@@ -1,0 +1,12 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterFlow
+metadata:
+  name: guestbook-logs-flow
+  namespace: logging
+spec:
+  globalOutputRefs:
+    - elasticsearch-output
+  match:
+    - select:
+        labels:
+          app.kubernetes.io/name: helm-guestbook
