@@ -25,7 +25,8 @@ configuration: |
       
       # Using your Redis headless service DNS
       server redis-0 redis-node-0.redis-headless.redis.svc.cluster.local:6379 check
-      # server redis-1 redis-node-1.redis-headless.redis.svc.cluster.local:6379 check
+      server redis-1 redis-node-1.redis-headless.redis.svc.cluster.local:6379 check
+      server redis-2 redis-node-2.redis-headless.redis.svc.cluster.local:6379 check
 
 ## Bitnami uses 'containerPorts' to open the port on the Pod
 containerPorts:
