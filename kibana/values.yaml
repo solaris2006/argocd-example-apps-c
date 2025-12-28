@@ -13,7 +13,9 @@ extraEnvs:
   - name: "NODE_OPTIONS"
     value: "--max-old-space-size=1800"
   - name: NODE_TLS_REJECT_UNAUTHORIZED
-    value: "0"  
+    value: "0"
+  - name: ELASTICSEARCH_SERVICE_TOKEN
+    value: "AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS1raWJhbmEtbWFudWFsOi1ueGZFQkdzVHFheEpDR2llenpNSVE"    
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
@@ -73,8 +75,7 @@ kibanaConfig:
     elasticsearch.hosts: ["https://elasticsearch-master:9200"]
     
     # Use the superuser to bypass service token issues
-    elasticsearch.username: "elastic"
-    elasticsearch.password: "mypass" 
+    
     
     # SSL Settings
     elasticsearch.ssl.certificateAuthorities: [ "/usr/share/kibana/config/certs/ca.crt" ]
