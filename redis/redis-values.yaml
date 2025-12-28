@@ -10,7 +10,7 @@ replicaCount: 3     # This gives you 1 Master + 1 Replica = 2 Nodes total
 sentinel:
   enabled: true
   masterSet: mymaster
-  quorum: 1
+  quorum: 2
 
 resources:
   limits:
