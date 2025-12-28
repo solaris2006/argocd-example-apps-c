@@ -9,4 +9,4 @@ spec:
   match:
     - select:
         labels:
-          app.kubernetes.io/name: helm-guestbook
+          app: helm-guestbook
