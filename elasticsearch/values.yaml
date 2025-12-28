@@ -85,7 +85,7 @@ podAnnotations: {}
 # additionals labels
 labels: {}
 
-esJavaOpts: "-Xmx512m -Xms512m" # example: "-Xmx1g -Xms1g"
+esJavaOpts: "" # example: "-Xmx1g -Xms1g"
 
 resources:
   requests:
