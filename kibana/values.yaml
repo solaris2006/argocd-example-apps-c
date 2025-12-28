@@ -79,10 +79,10 @@ kibanaConfig:
     # SSL Settings
     elasticsearch.ssl.certificateAuthorities: [ "/usr/share/kibana/config/certs/ca.crt" ]
     elasticsearch.ssl.verificationMode: certificate
-    console.proxyConfig:
-      - ssl:
-          verify: false
-#     key:
+#     console.proxyConfig:
+#       - ssl:
+#           verify: false
+# #     key:
 #       nestedkey: value
 
 # If Pod Security Policy in use it may be required to specify security context as well as service account
