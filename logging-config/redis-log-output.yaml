@@ -2,18 +2,16 @@ apiVersion: logging.banzaicloud.io/v1beta1
 kind: Output
 metadata:
   name: es-output
-  namespace: redis # Keep this in the same namespace as your apps
+  namespace: redis
 spec:
   elasticsearch:
     host: elasticsearch-master.logging.svc.cluster.local
     port: 9200
-    # Optional: if you have security enabled
-    # user: elastic
-    # password:
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: elastic-password
-    #       key: password
+    # Add this to ensure logs are grouped by date automatically
+    logstash_format: true 
+    logstash_prefix: k8s-logs
     buffer:
-      time_key: "@timestamp"
-      flush_interval: 5s
+      # Fix: Use 'timekey' (no underscore) and a time duration string
+      timekey: 1m
+      timekey_wait: 30s
+      flush_thread_count: 2
