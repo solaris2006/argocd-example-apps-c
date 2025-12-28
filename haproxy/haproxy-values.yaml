@@ -1,16 +1,7 @@
-service:
-  type: NodePort  # Better for KVM labs than LoadBalancer
-  ports:
-  - name: redis
-    port: 6379   # Change the service port to 6379
-    targetPort: 6379
-    protocol: TCP
-
-
-config: |
+## Bitnami HAProxy uses 'configuration' (not 'config')
+configuration: |
   global
       log stdout format raw local0
-  
   defaults
       log global
       mode tcp
@@ -26,13 +17,26 @@ config: |
   backend redis-backend
       mode tcp
       option tcp-check
-      # This is the "Magic" check: it asks Redis "Are you the master?"
       tcp-check send "info replication\r\n"
       tcp-check expect string "role:master"
       
-      # Use the internal K8s DNS for your Redis nodes
+      # Using your Redis headless service DNS
       server redis-0 redis-node-0.redis-headless.redis.svc.cluster.local:6379 check
       server redis-1 redis-node-1.redis-headless.redis.svc.cluster.local:6379 check
+
+## Bitnami uses 'containerPorts' to open the port on the Pod
+containerPorts:
+  - name: redis
+    containerPort: 6379
+
+## Service configuration to expose HAProxy
+service:
+  type: NodePort
+  ports:
+    - name: redis
+      port: 6379
+      targetPort: redis
+      protocol: TCP
 
 resources:
   limits:
