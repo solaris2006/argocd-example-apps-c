@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-app-script
+  namespace: redis
+data:
+  app.py: |
+    import redis
+    import time
+    r = redis.Redis(host='haproxy', port=6379, password='Doifo4Pj44', decode_responses=True)
+    while True:
+        try:
+            t = time.ctime()
+            r.set('sent_at', t)
+            print(f"Key sent: {t} | Received: {r.get('sent_at')}")
+        except Exception as e:
+            print(f"FAIL: {e}")
+        time.sleep(2)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-client-app
+  namespace: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-client
+  template:
+    metadata:
+      labels:
+        app: redis-client
+    spec:
+      containers:
+      - name: python
+        image: python:3.9-slim
+        command: ["/bin/sh", "-c"]
+        args:
+          - pip install redis && python /app/app.py
+        volumeMounts:
+        - name: script-vol
+          mountPath: /app
+      volumes:
+      - name: script-vol
+        configMap:
+          name: redis-app-script
