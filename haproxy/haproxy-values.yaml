@@ -17,6 +17,8 @@ configuration: |
   backend redis-backend
       mode tcp
       option tcp-check
+      tcp-check send "Doifo4Pj44\r\n"
+      tcp-check expect string "+OK"
       tcp-check send "info replication\r\n"
       tcp-check expect string "role:master"
       
