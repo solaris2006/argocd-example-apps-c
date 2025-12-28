@@ -1,4 +1,4 @@
-architecture: replcation
+architecture: replication
 replica:
   replicaCount: 2
 sentinel:
