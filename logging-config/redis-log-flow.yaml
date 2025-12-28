@@ -7,13 +7,12 @@ spec:
   filters:
     - tag_normaliser: {}
     - parser:
-        parse_static: true
         key_name: log
-        parsers:
-          - type: regexp
-            # This helps parse standard Redis log formats
-            expression: /^(?<time>\d+:\w+ \d+ \d+:\d+:\d+\.\d+) (?<level>[.*#]) (?<message>.*)$/
-            time_format: "%d %b %Y %H:%M:%S.%L"
+        # Note: 'parse' is singular here and replaces 'parsers'
+        parse:
+          type: regexp
+          expression: '/^(?<time>\d+:\w+ \d+ \d+:\d+:\d+\.\d+) (?<level>[.*#]) (?<message>.*)$/'
+          time_format: "%d %b %Y %H:%M:%S.%L"
   match:
     - select: {}
   localOutputRefs:
