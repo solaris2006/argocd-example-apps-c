@@ -7,15 +7,15 @@ config:
       targetRevision: master
 
 applications:
-  - name: blue-green
-    tool:
-      helm:
-        releaseName: blue-green
+  # - name: blue-green
+  #   tool:
+  #     helm:
+  #       releaseName: blue-green
   - name: guestbook
-  - name: helm-dependency
-    tool:
-      helm:
-        releaseName: helm-dependency
+  # - name: helm-dependency
+  #   tool:
+  #     helm:
+  #       releaseName: helm-dependency
   - name: helm-guestbook
     tool:
       helm:
