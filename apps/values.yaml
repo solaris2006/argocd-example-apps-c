@@ -42,3 +42,7 @@ applications:
   - name: pre-post-sync
   - name: sock-shop
   - name: sync-waves
+  - name: prometheus
+    tool:
+      helm:
+        releaseName: helm-prometheus
