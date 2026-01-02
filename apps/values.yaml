@@ -46,3 +46,7 @@ applications:
     tool:
       helm:
         releaseName: helm-prometheus
+  - name: grafana
+    tool:
+      helm:
+        releaseName: helm-gerafana
