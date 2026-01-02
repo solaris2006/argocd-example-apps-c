@@ -3,7 +3,7 @@ config:
     destination:
       server: https://kubernetes.default.svc
     source:
-      repoURL: https://github.com/argoproj/argocd-example-apps
+      repoURL: https://github.com/solaris2006/argocd-example-apps-c.git
       targetRevision: master
 
 applications:
