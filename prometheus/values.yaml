@@ -1268,7 +1268,10 @@ serverFiles:
 # adds additional scrape configs to prometheus.yml
 # must be a string so you have to add a | after extraScrapeConfigs:
 # example adds prometheus-blackbox-exporter scrape config
-extraScrapeConfigs: ""
+extraScrapeConfigs: |
+  - job_name: 'elasticsearch-exporter-pod'
+    static_configs:
+      - targets: ['prometheus-elasticsearch-exporter.prometheus-elasticsearch-exporter.svc.cluster.local:9108']
   # - job_name: 'prometheus-blackbox-exporter'
   #   metrics_path: /probe
   #   params:
