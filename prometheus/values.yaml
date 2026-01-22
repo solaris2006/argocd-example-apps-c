@@ -824,7 +824,29 @@ scrapeConfigFiles: []
 serverFiles:
   ## Alerts configuration
   ## Ref: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
-  alerting_rules.yml: {}
+  alerting_rules.yml:
+    groups:
+      - name: ElasticsearchAlerts
+        rules:
+          # Alert if the cluster health is RED
+          - alert: ElasticsearchClusterRed
+            expr: elasticsearch_cluster_health_status{status="red"} == 1
+            for: 1m
+            labels:
+              severity: critical
+            annotations:
+              summary: "Instance {{ $labels.instance }} - Cluster RED"
+              description: "Elasticsearch cluster is in RED state. Primary shards are unassigned."
+
+          # Alert if Heap usage is too high
+          - alert: ElasticsearchHeapTooHigh
+            expr: (elasticsearch_jvm_memory_used_bytes{area="heap"} / elasticsearch_jvm_memory_max_bytes{area="heap"}) * 100 > 90
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Elasticsearch High Heap Usage"
+              description: "Heap usage is {{ $value | printf \"%.2f\" }}% on node {{ $labels.node }}."
   # groups:
   #   - name: Instances
   #     rules:
@@ -1323,6 +1345,22 @@ alertmanager:
   ## If false, alertmanager will not be installed
   ##
   enabled: true
+  config:
+    global:
+      resolve_timeout: 5m
+    route:
+      group_by: ['alertname', 'cluster']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      receiver: 'default-receiver'
+    receivers:
+      - name: 'default-receiver'
+        # Example for Slack - replace with your actual webhook
+        slack_configs:
+          - api_url: 'https://hooks.slack.com/services/T000/B000/XXXX'
+            channel: '#alerts'
+            send_resolved: true
 
   persistence:
     ## If true, storage will create or use Persistence Volume
