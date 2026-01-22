@@ -50,3 +50,7 @@ applications:
     tool:
       helm:
         releaseName: helm-gerafana
+  - name: prometheus-elasticsearch-exporter
+    tool:
+      helm:
+        releaseName: prometheus-elasticsearch-exporter      
