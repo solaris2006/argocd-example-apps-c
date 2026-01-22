@@ -230,7 +230,7 @@ es:
   ##
   uri: https://elastic:mon24ane@192.168.121.246:9200
 
-  ssl_skip_verify: true
+  
 
   ## If true, query stats for all nodes in the cluster, rather than just the
   ## node we connect to.
@@ -284,7 +284,7 @@ es:
   ## Skip SSL verification when connecting to Elasticsearch
   ## (only available if image.tag >= 1.0.4rc1)
   ##
-  sslSkipVerify: false
+  sslSkipVerify: true
 
   ssl:
     ## If true, a secure connection to ES cluster is used
