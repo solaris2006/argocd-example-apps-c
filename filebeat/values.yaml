@@ -65,13 +65,15 @@ daemonset:
                   to: app_group
               fail_on_error: false
               ignore_missing: true
+              overwrite: true
 
           - copy_fields:
               fields:
                 - from: kubernetes.labels.name
                   to: app_group
               fail_on_error: false
-              ignore_missing: true          
+              ignore_missing: true
+              overwrite: true          
 
       setup.ilm.enabled: false
       setup.template.name: "logs"
