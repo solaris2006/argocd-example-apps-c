@@ -125,7 +125,7 @@ deployment:
         username: "${ELASTICSEARCH_USERNAME}"
         password: "${ELASTICSEARCH_PASSWORD}"
         protocol: https
-        ssl.certificate_authorities: ["/usr/share/filebeat/certs/ca.crt"]
+        ssl.verification_mode: "none"
   nodeSelector: {}
   # A list of secrets and their paths to mount inside the pod
   # This is useful for mounting certificates for security other sensitive values
