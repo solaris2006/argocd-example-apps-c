@@ -53,27 +53,29 @@ daemonset:
               fields:
                 app_group: 'default'
 
+          - drop_fields:
+              when:
+                has_fields: ['kubernetes.labels.app']
+              fields: ["app_group"] # Clear the 'default' if the label exists
           - copy_fields:
-              fields:
-                - from: kubernetes.namespace
-                  to: app_group
-              ignore_missing: true      
-
-          - copy_fields:
+              when:
+                has_fields: ['kubernetes.labels.app']
               fields:
                 - from: kubernetes.labels.app
                   to: app_group
-              fail_on_error: false
               ignore_missing: true
-              overwrite: true
 
+          - drop_fields:
+              when:
+                has_fields: ['kubernetes.labels.name']
+              fields: ["app_group"] # Clear the previous value if 'name' exists
           - copy_fields:
+              when:
+                has_fields: ['kubernetes.labels.name']
               fields:
                 - from: kubernetes.labels.name
                   to: app_group
-              fail_on_error: false
-              ignore_missing: true
-              overwrite: true          
+              ignore_missing: true          
 
       setup.ilm.enabled: false
       setup.template.name: "logs"
