@@ -48,7 +48,25 @@ daemonset:
             - logs_path:
                 logs_path: "/var/log/containers/"
 
-      setup.ilm.enabled: false
+      - add_fields:
+          target: ''
+          fields:
+            app_group: 'default'
+
+      - copy_fields:
+          fields:
+            - from: kubernetes.labels.app
+              to: app_group
+          fail_on_error: false
+          ignore_missing: true
+
+      - copy_fields:
+          fields:
+            - from: kubernetes.labels.name
+              to: app_group
+          fail_on_error: false
+          ignore_missing: true          
+
       setup.ilm.enabled: false
       setup.template.name: "logs"
       setup.template.pattern: "logs-*"
@@ -59,7 +77,7 @@ daemonset:
         hosts: ["https://192.168.121.246:9200"]
         username: '${ELASTICSEARCH_USERNAME}'
         password: '${ELASTICSEARCH_PASSWORD}'
-        index: "logs-%{[kubernetes.labels.name]:%{[kubernetes.labels.app]:default}}-%{+yyyy.MM.dd}"
+        index: "logs-%{[app_group]}-%{+yyyy.MM.dd}"
         protocol: https
         ssl.verification_mode: "none"
   # Only used when updateStrategy is set to "RollingUpdate"
