@@ -120,6 +120,11 @@ deployment:
           paths:
             - /usr/share/filebeat/logs/filebeat
 
+      setup.ilm.enabled: false
+
+      setup.template.name: "logs"
+      setup.template.pattern: "logs-*"
+
       output.elasticsearch:
         host: "${NODE_NAME}"
         hosts: '["https://${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}"]'
@@ -127,6 +132,7 @@ deployment:
         password: "${ELASTICSEARCH_PASSWORD}"
         protocol: https
         ssl.verification_mode: "none"
+        index: "logs-%{[kubernetes.labels.name]:default}-%{+yyyy.MM.dd}"
   nodeSelector: {}
   # A list of secrets and their paths to mount inside the pod
   # This is useful for mounting certificates for security other sensitive values
