@@ -55,6 +55,7 @@ applications:
       helm:
         releaseName: prometheus-elasticsearch-exporter
   - name: filebeat
+    namespace: logging
     tool:
       helm:
         releaseName: filebeat
