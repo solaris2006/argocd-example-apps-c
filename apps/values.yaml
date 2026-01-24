@@ -60,6 +60,6 @@ applications:
       helm:
         releaseName: logging-operator
 
-  - name: logging-config
-    namespace: logging
-    path: logging-config
+  # - name: logging-config
+  #   namespace: logging
+  #   path: logging-config
