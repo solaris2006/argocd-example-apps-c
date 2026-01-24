@@ -5,17 +5,7 @@ metadata:
   namespace: guestbook
 spec:
   filters:
-    - tag_normaliser: {}
-    # - parser:
-    #     remove_key_name_field: true
-    #     reserve_data: true
-    #     parse:
-    #       type: nginx
-    - parser:
-        remove_key_name_field: true
-        reserve_data: true
-        parse:
-          type: nginx
+    # - tag_normaliser: {}
     - record_transformer:
         enable_ruby: true
         record:
