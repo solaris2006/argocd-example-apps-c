@@ -5,5 +5,11 @@ metadata:
   namespace: logging
 spec:
   controlNamespace: logging
-  fluentbit: {}
-  fluentd: {}
+  fluentd:
+    disablePvc: true # Use this if you don't have a storage class for buffers
+    scaling:
+      replicas: 1
+  fluentbit:
+    # This ensures Fluent Bit monitors all nodes
+    filterKubernetes:
+      Kube_URL: https://kubernetes.default.svc:443
