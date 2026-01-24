@@ -54,11 +54,11 @@ applications:
     tool:
       helm:
         releaseName: prometheus-elasticsearch-exporter
-  - name: logging-operator
-    namespace: logging
-    tool:
-      helm:
-        releaseName: logging-operator
+  # - name: logging-operator
+  #   namespace: logging
+  #   tool:
+  #     helm:
+  #       releaseName: logging-operator
 
   # - name: logging-config
   #   namespace: logging
