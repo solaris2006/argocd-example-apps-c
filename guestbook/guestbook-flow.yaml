@@ -13,9 +13,7 @@ spec:
     #       type: nginx
     - record_transformer:
         enable_ruby: true
-        record:
-          - app_group: "guestbook"  
-      
+        record: {"app_group": "guestbook"}      
   match:
      - select:
          labels:
