@@ -31,8 +31,6 @@ spec:
       kind: Flow
       jsonPointers:
         - /spec/filters
-        - /spec/localOutputRefs
-        - /spec/globalOutputRefs
   {{- end }}
   # ----------------------
 
