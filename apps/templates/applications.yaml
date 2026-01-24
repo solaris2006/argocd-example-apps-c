@@ -26,8 +26,7 @@ spec:
       kind: ClusterFlow
       name: all-logs-flow
       jsonPointers:
-        - /spec/filters/0/record_transformer/record   # Changed to 'record'
-        - /spec/filters/1/rewrite_tag_filter/rules    # Added this for the second filter
+        - /spec/filters Added this for the second filter
         - /status
   {{- end }}
   # ----------------------
