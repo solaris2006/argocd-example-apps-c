@@ -9,7 +9,6 @@ spec:
     - record_transformer:
         enable_ruby: true
         record:
-          # This logic mimics your Filebeat fallback: name label OR app label OR namespace
           app_group: ${ record.dig("kubernetes", "labels", "name") || record.dig("kubernetes", "labels", "app") || record.dig("kubernetes", "namespace_name") }
   globalOutputRefs:
     - elasticsearch-vm

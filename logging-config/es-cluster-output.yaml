@@ -16,4 +16,5 @@ spec:
           name: elasticsearch-master-credentials
           key: password
 
-    
+    logstash_format: true
+    logstash_prefix: "logs"
