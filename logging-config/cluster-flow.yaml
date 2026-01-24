@@ -4,11 +4,11 @@ metadata:
   name: all-logs-flow
   namespace: logging
 spec:
-  # filters:
-  #   - record_transformer:
-  #       enable_ruby: true
+  filters:
+    - record_transformer:
+        enable_ruby: true
   #       tag: '${ (record.dig("kubernetes", "labels", "name") || record.dig("kubernetes", "labels", "app") || record.dig("kubernetes", "namespace_name")).downcase }'
-  #       records:
-  #         - app_group: '${ record.dig("kubernetes", "labels", "name") || record.dig("kubernetes", "labels", "app") || record.dig("kubernetes", "namespace_name") }'
+        records:
+          - app_group: '${ record.dig("kubernetes", "labels", "name") || record.dig("kubernetes", "labels", "app") || record.dig("kubernetes", "namespace_name") }'
   globalOutputRefs:
     - elasticsearch-vm
