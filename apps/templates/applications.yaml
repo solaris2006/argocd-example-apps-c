@@ -30,8 +30,6 @@ spec:
         - /status
     - group: logging.banzaicloud.io
       kind: Flow
-      name: guestbook-flow
-      namespace: guestbook
       jsonPointers:
         - /spec/filters
         - /status    
