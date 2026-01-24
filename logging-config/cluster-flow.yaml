@@ -8,6 +8,6 @@ spec:
     - record_transformer:
         enable_ruby: true
         record:
-          app_group: '${ (record.dig("kubernetes", "labels", "name") || record.dig("kubernetes", "labels", "app") || record.dig("kubernetes", "namespace_name") || "unknown").downcase }'
+          app_group: '${ (record["kubernetes"]["labels"]["name"] rescue nil) || (record["kubernetes"]["labels"]["app"] rescue nil) || record["kubernetes"]["namespace_name"] || "unknown" }'
   globalOutputRefs:
     - elasticsearch-vm
