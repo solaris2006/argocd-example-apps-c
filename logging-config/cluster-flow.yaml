@@ -5,7 +5,6 @@ metadata:
   namespace: logging
 spec:
   filters:
-    - tag_normaliser: {} # Standardizes tags to 'kubernetes.var.log.containers...'
     - record_transformer:
         enable_ruby: true
         tag: '${ (record.dig("kubernetes", "labels", "name") || record.dig("kubernetes", "labels", "app") || record.dig("kubernetes", "namespace_name")).downcase }'

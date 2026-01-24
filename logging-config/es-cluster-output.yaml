@@ -17,4 +17,7 @@ spec:
           key: password
 
     logstash_format: true
-    
+    buffer:
+      timekey: 1m
+      timekey_wait: 10s
+      type: file
