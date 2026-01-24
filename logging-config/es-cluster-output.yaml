@@ -17,4 +17,4 @@ spec:
           key: password
 
     logstash_format: true
-    logstash_prefix_record_key: app_group
+    
