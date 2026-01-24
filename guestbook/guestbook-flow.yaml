@@ -4,15 +4,16 @@ metadata:
   name: guestbook-flow
   namespace: guestbook
 spec:
-  filters:
-    # - tag_normaliser: {}
-    - record_transformer:
-        enable_ruby: true
-        record:
-          app_group: '${ "guestbook" }'  
   match:
-     - select:
-         labels:
-           app: guestbook-ui
+    - select:
+        labels:
+          app: guestbook-ui
+  filters:
+    - lua:
+        code: |
+          def filter(tag, time, record)
+             record["app_group"] = "guestbook"
+             return record
+          end
   globalOutputRefs:
     - elasticsearch-vm
