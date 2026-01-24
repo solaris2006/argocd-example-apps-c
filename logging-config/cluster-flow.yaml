@@ -11,8 +11,8 @@ spec:
           app_group: '${ (record.dig("kubernetes", "labels", "name") || record.dig("kubernetes", "labels", "app") || record.dig("kubernetes", "namespace_name")).downcase }'
     - rewrite_tag_filter:
         rules:
-          - name: app_group
-            regexp: '^(.+)$'
-            replacement: '$1'
+          - name: "app_group"
+            regexp: ".+"
+            replacement: "$1"
   globalOutputRefs:
     - elasticsearch-vm
