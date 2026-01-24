@@ -26,7 +26,8 @@ spec:
       kind: ClusterFlow
       name: all-logs-flow
       jsonPointers:
-        - /spec/filters/1/record_transformer/record/app_group
+        - /spec/filters/1/record_transformer/tag
+        - /spec/filters/1/record_transformer/records
         - /status
   {{- end }}
   # ----------------------
