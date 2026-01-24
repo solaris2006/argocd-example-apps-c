@@ -11,9 +11,13 @@ spec:
         reserve_data: true
         parse:
           type: nginx
+    - record_transformer:
+        enable_ruby: true
+        record:
+          app_group: "guestbook"      
   match:
      - select:
          labels:
            app: guestbook-ui
-  localOutputRefs:
-    - es-output
+  globalOutputRefs:
+    - elasticsearch-vm
