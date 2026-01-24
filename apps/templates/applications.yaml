@@ -19,6 +19,18 @@ spec:
     {{- with .tool }}
     {{- . | toYaml | nindent 4 }}
     {{- end }}
+
+  {{- if eq .name "logging-config" }}
+  ignoreDifferences:
+    - group: logging.banzaicloud.io
+      kind: ClusterFlow
+      name: all-logs-flow
+      jsonPointers:
+        - /spec/filters/1/record_transformer/record/app_group
+        - /status
+  {{- end }}
+  # ----------------------
+
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
