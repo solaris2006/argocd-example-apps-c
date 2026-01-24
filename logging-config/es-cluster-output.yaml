@@ -17,6 +17,7 @@ spec:
           key: password
 
     logstash_format: true
+    logstash_prefix: logs
     buffer:
       timekey: 1m
       timekey_wait: 10s
