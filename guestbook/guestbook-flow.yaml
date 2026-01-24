@@ -5,15 +5,13 @@ metadata:
   namespace: guestbook
 spec:
   filters:
-    - tag_normaliser: {}
-    - parser:
-        remove_key_name_field: true
-        reserve_data: true
-        parse:
-          type: nginx
+    - record_transformer:
+        enable_ruby: true
+        record:
+          app_group: "guestbook"
   match:
      - select:
          labels:
            app: guestbook-ui
-  localOutputRefs:
+  globalOutputRefs:
     - elasticsearch-vm
