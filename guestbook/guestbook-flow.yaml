@@ -15,5 +15,5 @@ spec:
      - select:
          labels:
            app: guestbook-ui
-  globalOutputRefs:
-    - elasticsearch-vm
+  localOutputRefs:
+    - es-output
