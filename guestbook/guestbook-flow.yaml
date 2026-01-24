@@ -9,11 +9,8 @@ spec:
         labels:
           app: guestbook-ui
   filters:
-    - lua:
-        code: |
-          def filter(tag, time, record)
-             record["app_group"] = "guestbook"
-             return record
-          end
+    - record_modifier:
+        records:
+          - app_group: "guestbook"
   globalOutputRefs:
     - elasticsearch-vm
