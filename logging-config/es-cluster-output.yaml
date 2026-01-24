@@ -17,7 +17,7 @@ spec:
           key: password
 
     logstash_format: false
-    index_name: "${app_group}-%Y.%m.%d"
+    index_name: ${record['app_group']}-%Y.%m.%d
     buffer:
       timekey: 1m
       timekey_wait: 10s
