@@ -7,8 +7,8 @@ spec:
   filters:
     - record_transformer:
         enable_ruby: true
-        records:
-          - app_group: '${ (record.dig("kubernetes", "labels", "name") || record.dig("kubernetes", "labels", "app") || record.dig("kubernetes", "namespace_name")).downcase }'
+        record:
+          app_group: '${ (record.dig("kubernetes", "labels", "name") || record.dig("kubernetes", "labels", "app") || record.dig("kubernetes", "namespace_name")).downcase }'
     - rewrite_tag_filter:
         rules:
           - name: app_group
