@@ -11,9 +11,11 @@ spec:
     #     reserve_data: true
     #     parse:
     #       type: nginx
-    - record_transformer:
-        enable_ruby: true
-        record: {"app_group": "guestbook"}      
+    - parser:
+        remove_key_name_field: true
+        reserve_data: true
+        parse:
+          type: nginx      
   match:
      - select:
          labels:
