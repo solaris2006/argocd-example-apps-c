@@ -19,7 +19,7 @@ spec:
     - record_transformer:
         enable_ruby: true
         record:
-          app_group: "guestbook"           
+          app_group: '${ "guestbook" }'  
   match:
      - select:
          labels:
