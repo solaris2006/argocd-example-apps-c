@@ -11,15 +11,11 @@ spec:
     #     reserve_data: true
     #     parse:
     #       type: nginx
-    # - record_transformer:
-    #     enable_ruby: true
-    #     record:
-    #       app_group: "guestbook"  
     - record_transformer:
         enable_ruby: true
         record:
-          debug_field: "i-am-working"
-          app_group: "guestbook"    
+          app_group: "guestbook"  
+      
   match:
      - select:
          labels:
