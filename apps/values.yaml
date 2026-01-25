@@ -54,6 +54,10 @@ applications:
     tool:
       helm:
         releaseName: prometheus-elasticsearch-exporter
+  - name: valkey
+    tool:
+      helm:
+        releaseName: valkey     
   # - name: logging-operator
   #   namespace: logging
   #   tool:
