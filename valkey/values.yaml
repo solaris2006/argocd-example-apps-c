@@ -219,7 +219,7 @@ replica:
     enabled: true
     # Service type (ClusterIP, NodePort, LoadBalancer)
     type: NodePort
-    # Port on which the read service will be exposed
+    # Port on which the read service will be exposedv
     port: 6379
     # Optional annotations for the read service
     annotations: {}
