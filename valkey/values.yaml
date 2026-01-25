@@ -61,12 +61,12 @@ securityContext:
 
 service:
   # Type of Kubernetes service (ClusterIP, NodePort, LoadBalancer)
-  type: ClusterIP
+  type: NodePort
   # Port on which Valkey will be exposed
   port: 6379
   annotations: {}
   # NodePort value (if service.type is NodePort)
-  nodePort: 0
+  nodePort: 30002
   # ClusterIP value
   clusterIP: ""
   # Class of a load balancer implementation
