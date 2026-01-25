@@ -218,13 +218,13 @@ replica:
     # Enable read service (load balances read traffic across all pods)
     enabled: true
     # Service type (ClusterIP, NodePort, LoadBalancer)
-    type: ClusterIP
+    type: NodePort
     # Port on which the read service will be exposed
     port: 6379
     # Optional annotations for the read service
     annotations: {}
     # NodePort value (if service.type is NodePort)
-    nodePort: 0
+    nodePort: 30003
     # ClusterIP value
     clusterIP: ""
     # Application protocol
