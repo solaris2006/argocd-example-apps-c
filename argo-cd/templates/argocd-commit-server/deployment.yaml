@@ -110,6 +110,9 @@ spec:
         {{- end }}
         ports:
         - containerPort: 8086
+          envFrom:
+            - secretRef:
+                name: vault-secret-example
           name: server
           protocol: TCP
         - containerPort: 8087
@@ -220,3 +223,21 @@ spec:
       {{- end }}
       dnsPolicy: {{ .Values.commitServer.dnsPolicy }}
 {{- end }}
+
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: vault-secret-example
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: vault-secret-example
+  data:
+  - secretKey: my-vault-injected-password
+    remoteRef:
+      key: secret/data/guestbook
+      property: password

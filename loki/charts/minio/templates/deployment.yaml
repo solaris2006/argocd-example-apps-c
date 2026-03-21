@@ -211,3 +211,21 @@ spec:
           {{ toYaml .Values.extraVolumes | nindent 8 }}
         {{- end }}
 {{- end }}
+
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: vault-secret-example
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: vault-secret-example
+  data:
+  - secretKey: my-vault-injected-password
+    remoteRef:
+      key: secret/data/guestbook
+      property: password
